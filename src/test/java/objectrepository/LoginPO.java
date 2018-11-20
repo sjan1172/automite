@@ -5,8 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 import static org.junit.Assert.assertTrue;
 
-public class LoginPO {
-    private WebDriver driver;
+public class LoginPO extends Base {
 
     By txtUsernameLocator = By.id("username");
     By txtPasswordLocator = By.id("password");
@@ -16,24 +15,23 @@ public class LoginPO {
     By failureMessageLocator = By.cssSelector(".flash.error");
 
     public LoginPO(WebDriver driver) {
-        this.driver = driver;
-        this.driver.get("http://the-internet.herokuapp.com/login");
-        assertTrue(driver.findElement(btnLoginLocator).isDisplayed());
+        super(driver);
+        visit("http://the-internet.herokuapp.com/login");
+        assertTrue(isDisplayed(btnLoginLocator));
     }
 
     public void with(String username, String password) {
-        driver.findElement(txtUsernameLocator).sendKeys(username);
-        driver.findElement(txtPasswordLocator).sendKeys(password);
-        driver.findElement(btnLoginLocator).click();
+        type(username, txtUsernameLocator);
+        type(password, txtPasswordLocator);
+        click(btnLoginLocator);
         System.out.println("===== USER LOGGED IN =====");
     }
 
     public Boolean isSuccessMessagePresent(){
-        return driver.findElement(successMessageLocator).isDisplayed();
+        return isDisplayed(successMessageLocator);
     }
 
     public Boolean isFailureMessagePresent(){
-        return driver.findElement(failureMessageLocator).isDisplayed();
+        return isDisplayed(failureMessageLocator);
     }
-
 }
