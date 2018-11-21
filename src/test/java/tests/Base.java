@@ -1,11 +1,13 @@
 package tests;
 
 import com.saucelabs.saucerest.SauceREST;
+import net.sf.randomjunit.RandomTestRunner;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,6 +17,7 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import java.net.URL;
 
+@RunWith(RandomTestRunner.class) //runs parallel execution on random order
 public class Base implements Config{
     protected WebDriver driver;
     private String testName;
