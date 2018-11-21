@@ -17,7 +17,7 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import java.net.URL;
 
-@RunWith(RandomTestRunner.class) //runs parallel execution on random order
+//@RunWith(RandomTestRunner.class) //runs parallel execution on random order
 public class Base implements Config{
     protected WebDriver driver;
     private String testName;
