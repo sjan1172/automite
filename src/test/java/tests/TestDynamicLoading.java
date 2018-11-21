@@ -1,24 +1,29 @@
 package tests;
 
 import objectrepository.DynamicLoading;
-import objectrepository.LoginPO;
-import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.junit.Test;
 
-public class TestDynamicLoading {
-    private WebDriver driver;
+import static org.junit.Assert.assertTrue;
+
+public class TestDynamicLoading extends Base{
+
     private DynamicLoading dynamicLoading;
 
     @Before
     public void setUp() {
-        driver = new FirefoxDriver();
         dynamicLoading = new DynamicLoading(driver);
     }
 
-    @After
-    public void tearDown(){
-        driver.quit();
+    @Test
+    public void hiddenElementLoads(){
+        dynamicLoading.loadExample("1");
+        assertTrue("finish text didn't display after loading", dynamicLoading.isFinishTextPresent());
+    }
+
+    @Test
+    public void elementAppears(){
+        dynamicLoading.loadExample("2");
+        assertTrue("finish text didn't render after loading", dynamicLoading.isFinishTextPresent());
     }
 }

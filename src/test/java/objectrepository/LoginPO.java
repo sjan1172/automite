@@ -16,7 +16,7 @@ public class LoginPO extends Base {
 
     public LoginPO(WebDriver driver) {
         super(driver);
-        visit("http://the-internet.herokuapp.com/login");
+        visit("/login");
         assertTrue(isDisplayed(btnLoginLocator));
     }
 
@@ -28,10 +28,10 @@ public class LoginPO extends Base {
     }
 
     public Boolean isSuccessMessagePresent(){
-        return isDisplayed(successMessageLocator);
+        return waitForElementDisplayed(successMessageLocator);
     }
 
     public Boolean isFailureMessagePresent(){
-        return isDisplayed(failureMessageLocator);
+        return waitForElementDisplayed(failureMessageLocator);
     }
 }

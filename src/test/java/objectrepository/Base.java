@@ -4,8 +4,11 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import tests.Config;
 
-public class Base {
+import static tests.Config.baseUrl;
+
+public class Base implements Config {
     private WebDriver driver;
 
     public Base(WebDriver driver){
@@ -13,7 +16,11 @@ public class Base {
     }
 
     public void visit(String url){
-        driver.get(url);
+        if(url.contains("http")){
+            driver.get(url);
+        }else{
+            driver.get(baseUrl + url);
+        }
     }
 
     public WebElement find(By locator){

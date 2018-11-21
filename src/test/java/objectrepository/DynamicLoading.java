@@ -13,11 +13,11 @@ public class DynamicLoading extends Base {
     }
 
     public void loadExample(String exampleNumber){
-        visit("http://the-internet.herokuapp.com/dynamic_loading/" + exampleNumber);
+        visit("/dynamic_loading/" + exampleNumber);
         click(btnStart);
     }
 
-    public Boolean finishTextPresent(){
+    public Boolean isFinishTextPresent(){
         return waitForElementDisplayed(finishText, 10);
     }
 
