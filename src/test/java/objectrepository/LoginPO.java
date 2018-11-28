@@ -2,8 +2,7 @@ package objectrepository;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertTrue;
 
 public class LoginPO extends Base {
 
@@ -24,14 +23,13 @@ public class LoginPO extends Base {
         type(username, txtUsernameLocator);
         type(password, txtPasswordLocator);
         click(btnLoginLocator);
-        System.out.println("===== USER LOGGED IN =====");
     }
 
-    public Boolean isSuccessMessagePresent(){
+    public Boolean isSuccessMessagePresent() {
         return waitForElementDisplayed(successMessageLocator);
     }
 
-    public Boolean isFailureMessagePresent(){
+    public Boolean isFailureMessagePresent() {
         return waitForElementDisplayed(failureMessageLocator);
     }
 }

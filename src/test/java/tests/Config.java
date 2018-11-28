@@ -2,7 +2,7 @@ package tests;
 
 public interface Config {
     final String baseUrl = System.getProperty("baseUrl", "http://the-internet.herokuapp.com");
-    final String browserName = System.getProperty("browserName", "firefox");
+    final String browserName = System.getProperty("browserName", "chrome");
 
     //cloud configs
     final String host = System.getProperty("host", "localhost"); //cloud provider
