@@ -2,6 +2,8 @@ package objectrepository;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static org.testng.Assert.assertTrue;
 
 public class LoginPO extends Base {
@@ -13,8 +15,8 @@ public class LoginPO extends Base {
     By successMessageLocator = By.cssSelector(".flash.success");
     By failureMessageLocator = By.cssSelector(".flash.error");
 
-    public LoginPO(WebDriver driver) {
-        super(driver);
+    public LoginPO(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
         visit("/login");
         assertTrue(isDisplayed(btnLoginLocator));
     }

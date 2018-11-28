@@ -16,7 +16,7 @@ public class TestLogin extends Base {
 
     @BeforeMethod
     public void setUp() {
-        loginPO = new LoginPO(driver);
+        loginPO = new LoginPO(driver, wait);
     }
 
     @Test

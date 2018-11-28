@@ -13,7 +13,7 @@ public class TestDynamicLoading extends Base {
 
     @BeforeClass
     public void setUp() {
-        dynamicLoading = new DynamicLoading(driver);
+        dynamicLoading = new DynamicLoading(driver, wait);
     }
 
     @Test

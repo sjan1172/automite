@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -16,6 +17,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Base implements Config {
     protected WebDriver driver;
+    protected WebDriverWait wait;
+
     private String testName;
     private String sessionId;
     private SauceREST sauceCient;
@@ -69,6 +72,7 @@ public class Base implements Config {
         } else if (browserName.contains("chrome")) {
             driver = new ChromeDriver();
         }
+        wait = new WebDriverWait(driver, 15);
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().fullscreen();

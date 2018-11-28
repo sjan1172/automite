@@ -6,21 +6,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import tests.Config;
 
-import static tests.Config.baseUrl;
-
 public class Base implements Config {
     private WebDriver driver;
+    private WebDriverWait wait;
 
-    public Base(WebDriver driver){
+    public Base(WebDriver driver, WebDriverWait wait){
         this.driver = driver;
+        this.wait = wait;
     }
 
-    public void visit(String url){
+    public String visit(String url){
         if(url.contains("http")){
             driver.get(url);
         }else{
             driver.get(baseUrl + url);
         }
+        return driver.getCurrentUrl();
     }
 
     public WebElement find(By locator){
@@ -57,9 +58,26 @@ public class Base implements Config {
         }
     }
 
+    public Boolean waitForClickable(By locator, Integer... timeout) {
+        try{
+            waitFor(ExpectedConditions.elementToBeClickable(locator), (timeout.length > 0 ? timeout[0]: null));
+            return find(locator).isDisplayed();
+        }catch(TimeoutException ex){
+            return false;
+        }
+    }
+
     private void waitFor(ExpectedCondition<WebElement> condition, Integer timeout){
         timeout = timeout != null ? timeout : 5;
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         wait.until(condition);
+    }
+
+    public String getPageTitle(){
+        return driver.getTitle();
+    }
+
+    public String getPageUrl(){
+        return driver.getCurrentUrl();
     }
 }
